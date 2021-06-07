@@ -8,7 +8,9 @@ import { getPaymentPointer } from '../monetization'
 export async function getStaticProps(context) {
   const gnomeConfigUrl = process.env.GNOME_CONFIG_URL
   console.log(`building single page gate with ${gnomeConfigUrl}`)
-  const { config } = await loadPublicGnomeConfig(gnomeConfigUrl)
+  const r = await loadPublicGnomeConfig(gnomeConfigUrl)
+  console.log("result", r)
+  const { config } = r
   console.log(`using config ${config}`)
   const conceptPrefix = getStringNoLocale(config, UG.conceptPrefix)
   const tagPrefix = getStringNoLocale(config, UG.tagPrefix)
