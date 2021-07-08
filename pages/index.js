@@ -14,7 +14,7 @@ export async function getStaticProps(context) {
   const tagPrefix = getStringNoLocale(config, UG.tagPrefix)
   const conceptUrl = getUrl(config, UG.usesConcept)
   const conceptIndexUrl = getUrl(config, UG.usesConceptIndex)
-  const { name, body } = await loadConcept(conceptIndexUrl, conceptUrl)
+  const { body } = await loadConcept(conceptIndexUrl, conceptUrl)
   const customCSS = getStringNoLocale(config, UG.usesCSS)
   const webId = getUrl(config, UG.monetizedFor)
   const paymentPointer = webId && await getPaymentPointer(webId)
@@ -38,9 +38,6 @@ export default function Home({ tagPrefix, conceptPrefix, name, body, customCSS, 
       </Head>
       <main className="min-h-screen">
         <section class="content">
-          <h1 className="title">
-            {name}
-          </h1>
           <div className="note-body">
             <NoteBody json={body} conceptPrefix={conceptPrefix} tagPrefix={tagPrefix}/>
           </div>
